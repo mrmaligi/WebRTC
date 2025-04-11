@@ -1,0 +1,25 @@
+api:
+  listen: ":1984"  # Listen on all interfaces
+  base_path: ""    # No base path needed
+
+webrtc:
+  listen: ":8555"  # WebRTC will listen on all interfaces
+  candidates:
+    - stun:stun.l.google.com:19302    # Public STUN server for NAT traversal
+    - stun:stun1.l.google.com:19302   # Backup STUN server
+  
+# Port ranges for WebRTC connections
+ports:
+  min: 30000
+  max: 31000
+
+streams:
+  # Phone 1: Video + Audio input
+  phone1:
+    input: "ffmpeg:device?video=0&audio=default"
+    broadcast: true
+
+  # Phone 2: Video + Audio input  
+  phone2:
+    input: "ffmpeg:device?video=0&audio=default"
+    broadcast: true
